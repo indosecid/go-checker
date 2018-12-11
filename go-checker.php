@@ -40,7 +40,7 @@
 	cek_version($version);
 	
 	// SERVER
-	$server = "http://mytools.mohona.tv/";
+	$server = "http://mytools.mohona.tv/Api/";
 
 	function banner()
 	{
