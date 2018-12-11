@@ -14,7 +14,7 @@
 
 	// error_reporting(0);
 	if (!file_exists('token.php')) {
-		echo "\n\n[-] SILAHKAN ISI TOKEN DAHULU, DENGAN MENGETIKAN SEPERTI DI BAWAH INI\n[+] php ser.php YOUR_TOKEN\n\n";
+		echo "\n\n[-] SILAHKAN ISI TOKEN DAHULU, DENGAN MENGETIKAN SEPERTI DI BAWAH INI\n[+] php set.php YOUR_TOKEN\n\n";
 		exit();
 	}
 	
