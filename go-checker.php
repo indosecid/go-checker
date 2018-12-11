@@ -13,7 +13,7 @@
 	$version = '1.1.1';
 
 	// error_reporting(0);
-	if (empty(require('token.php'))) {
+	if (!file_exists('token.php')) {
 		echo "\n\n[-] TIDAK ADA TOKEN, SILAHKAN CHAT KAMI DI FANSPAGE INDOSEC [-]\n[+] https://fb.com/IndoSecOfficial\n\n";
 		exit();
 	}
