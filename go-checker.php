@@ -85,16 +85,22 @@
 		if ($pilihan == 2) {
 			post_api($server, $data, 'bl', $file_txt, $die_txt);
 		}elseif($pilihan == 1){
+			sleep(1);
 			post_api($server, $data, 'phd', $file_txt, $die_txt);
 		}elseif($pilihan == 3){
+			sleep(1);
 			post_api($server, $data, 'tokopedia', $file_txt, $die_txt);
 		}elseif($pilihan == 4){
+			sleep(1);
 			post_api($server, $data, 'jdid', $file_txt, $die_txt);
 		}elseif($pilihan == 5){
+			sleep(1);
 			post_api($server, $data, 'ipvanish', $file_txt, $die_txt);
 		}elseif($pilihan == 6){
+			sleep(1);
 			post_api($server, $data, 'hma', $file_txt, $die_txt);
 		}elseif($pilihan == 7){
+			sleep(1);
 			post_api($server, $data, 'indihome', $file_txt, $die_txt);
 		}elseif($pilihan == 20){
 			$ch = curl_init();
@@ -120,7 +126,7 @@
 			}
 			sleep(1);
 		}
-		sleep(1);
+		
 	}
 
 	function pilihan()
