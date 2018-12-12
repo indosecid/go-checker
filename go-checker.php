@@ -1,9 +1,7 @@
 <?php 
 	/*
-		GO-Checker
+		GO-Checker Tools
 		Author : Minicode ft. Brilly4n
-		{ IndoSec }
-		Contact : https://facebook.com/IndoSecOfficial
 	*/
 
 	/*
@@ -12,7 +10,7 @@
 
 	$version = '1.1.1';
 
-	// error_reporting(0);
+	error_reporting(0);
 	if (!file_exists('token.php')) {
 		echo "\n\n[-] SILAHKAN ISI TOKEN DAHULU, DENGAN MENGETIKAN SEPERTI DI BAWAH INI\n[+] php set.php YOUR_TOKEN\n\n";
 		exit();
@@ -52,7 +50,7 @@
 | |_\ \ (_) |     | \__/\  __/   <  __/ |   
  \____/\___/       \____/\___|_|\_\___|_|  v.1.1
 
- https://www.facebook.com/IndoSecOfficial
+ > Minicode ft. Brilly4n
 ";
 	}
 
