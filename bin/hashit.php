@@ -6,200 +6,52 @@
 	   { IndoSec }
 
 */
-function hashit($hash, $type)
+function hashit($hash, $email, $type, $nama_file)
 {
-	$files = file_get_contents('bin/wordlist.txt');
-	$file  = explode("\n", $files);
 
 	if ($type == 32) {
-		$array = array(
-			'md5', 'md4', 'md2', 'ripemd128'
-		);
-		$type_hash = '';
-		$data = '';
-		$a = 0;
-		for($a; $a <= count($array) - 1; $a++){
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'https://md5.pinasthika.com/api/decrypt?value='.$hash);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$x = curl_exec($ch);
+		$z = json_decode($x);
+		if ($z->status->code == 200) {
+
+			$o = fopen($nama_file, 'a');
+			fwrite($o, $email."|".$z->result."\n");
+			fclose($o);
+
+			$res = array('data' => $z->result, 'hash' => $hash);
+			echo "\n[+] Password : $z->result | Hash : $type";	
 			
-			if ($array[$a] == 'md5') {
-				foreach ($file as $key) {
-					$hash_asli = md5($key);
+		}else{
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, 'http://mytools.mohona.tv/api/ultra_hash/'.$hash);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			$x = curl_exec($ch);
+			$z = json_decode($x);
 
-					if ($hash_asli == $hash) {
-						$data .= $key;
-						$type_hash .= $array[$a];
-					}else{
-						$data .= '';
-						$type_hash .= '';
-					}
-				}
-				
-			}else{
-				foreach ($file as $key) {
-					$hash_asli = hash($array[$a], $key);
+			$o = fopen($nama_file, 'a');
+			fwrite($o, $email."|".$z->data."\n");
+			fclose($o);
 
-					if ($hash_asli == $hash) {
-						$data .= $key;
-						$type_hash .= $array[$a];
-					}else{
-						$data .= '';
-						$type_hash .= '';
-					}
-				}
-			}
+			$res = array('data' => $z->data, 'type' => $z->type, 'hash' => $hash);
+			echo "\n[+] Password : $z->data | Type : $z->type | Hash : $type";		
 		}
-		
-		$res = array('data' => $data, 'type' => $type_hash, 'hash' => $hash);
-		echo "\n[+] Password : $data | Type : $type_hash | Hash : $hash";
-	}elseif($type == 40){
-		$array = array(
-			'sha1', 'ripemd160'
-		);
-		$type_hash = '';
-		$data = '';
-		$a = 0;
-		for($a; $a <= count($array) - 1; $a++){
-			
-			if ($array[$a] == 'sha1') {
-				foreach ($file as $key) {
-					$hash_asli = sha1($key);
-
-					if ($hash_asli == $hash) {
-						$data .= $key;
-						$type_hash .= $array[$a];
-					}else{
-						$data .= '';
-						$type_hash .= '';
-					}
-				}
-			}else{
-				foreach ($file as $key) {
-					$hash_asli = hash($array[$a], $key);
-
-					if ($hash_asli == $hash) {
-						$data .= $key;
-						$type_hash .= $array[$a];
-					}else{
-						$data .= '';
-						$type_hash .= '';
-					}
-				}
-			}
-		}
-		
-		$res = array('data' => $data, 'type' => $type_hash, 'hash' => $hash);
-		echo "\n[+] Password : $data | Type : $type_hash | Hash : $hash";
-	}elseif($type == 64){
-		$array = array(
-			'sha256', 'ripemd256', 'snefru', 'gost'
-		);
-		$type_hash = '';
-		$data = '';
-		$a = 0;
-		for($a; $a <= count($array) - 1; $a++){
-			
-			if ($array[$a] == 'sha1') {
-				foreach ($file as $key) {
-					$hash_asli = sha1($key);
-
-					if ($hash_asli == $hash) {
-						$data .= $key;
-						$type_hash .= $array[$a];
-					}else{
-						$data .= '';
-						$type_hash .= '';
-					}
-				}
-			}else{
-				foreach ($file as $key) {
-					$hash_asli = hash($array[$a], $key);
-
-					if ($hash_asli == $hash) {
-						$data .= $key;
-						$type_hash .= $array[$a];
-					}else{
-						$data .= '';
-						$type_hash .= '';
-					}
-				}
-			}
-		}
-		
-		$res = array('data' => $data, 'type' => $type_hash, 'hash' => $hash);
-		echo "\n[+] Password : $data | Type : $type_hash | Hash : $hash";
-	}elseif($type == 96){
-		$array = array(
-			'sha384'
-		);
-		$type_hash = '';
-		$data = '';
-		$a = 0;
-		foreach ($file as $key) {
-			$hash_asli = hash('sha384', $key);
-
-			if ($hash_asli == $hash) {
-				$data .= $key;
-				$type_hash .= 'sha384';
-			}else{
-				$data .= '';
-				$type_hash .= '';
-			}
-		}
-		$res = array('data' => $data, 'type' => $type_hash, 'hash' => $hash);
-		echo "\n[+] Password : $data | Type : $type_hash | Hash : $hash";
-	}elseif($type == 128){
-		$array = array(
-			'sha512', 'whirlpool'
-		);
-		$type_hash = '';
-		$data = '';
-		$a = 0;
-		for($a; $a <= count($array) - 1; $a++){
-			
-			foreach ($file as $key) {
-				$hash_asli = hash($array[$a], $key);
-
-				if ($hash_asli == $hash) {
-					$data .= $key;
-					$type_hash .= $array[$a];
-				}else{
-					$data .= '';
-					$type_hash .= '';
-				}
-			}
-		
-		}
-		
-		$res = array('data' => $data, 'type' => $type_hash, 'hash' => $hash);
-		echo "\n[+] Password : $data | Type : $type_hash | Hash : $hash";
-	}elseif($type == 8){
-		$array = array(
-			'adler32', 'crc32', 'crc32b'
-		);
-		$type_hash = '';
-		$data = '';
-		$a = 0;
-		for($a; $a <= count($array) - 1; $a++){
-			
-			foreach ($file as $key) {
-				$hash_asli = hash($array[$a], $key);
-
-				if ($hash_asli == $hash) {
-					$data .= $key;
-					$type_hash .= $array[$a];
-				}else{
-					$data .= '';
-					$type_hash .= '';
-				}
-			}
-		
-		}
-		
-		$res = array('data' => $data, 'type' => $type_hash, 'hash' => $hash);
-		echo "\n[+] Password : $data | Type : $type_hash | Hash : $hash";
 	}else{
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'http://mytools.mohona.tv/api/ultra_hash/'.$hash);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$x = curl_exec($ch);
+		$z = json_decode($x);
 
-		$res = array('data' => 'Tidak Ditemukan', 'type' => 'Tidak Ditemukan', 'hash' => $hash);
-		echo "\n[+] Password : - | Type : - | Hash : $hash";
+		$o = fopen($nama_file, 'a');
+		fwrite($o, $email."|".$z->data."\n");
+		fclose($o);
+
+		$res = array('data' => $z->data, 'type' => $z->type, 'hash' => $hash);
+		echo "\n[+] Password : $z->data | Type : $z->type | Hash : $type";
 	}
 }
 

