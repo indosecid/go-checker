@@ -19,7 +19,7 @@ function hashit($hash, $email, $type, $nama_file)
 		if ($z->status->code == 200) {
 
 			$o = fopen($nama_file, 'a');
-			fwrite($o, $email."|".$z->result."\n");
+			fwrite($o, "\n".$email."|".$z->result."\n");
 			fclose($o);
 
 			$res = array('data' => $z->result, 'hash' => $hash);
@@ -33,7 +33,7 @@ function hashit($hash, $email, $type, $nama_file)
 			$z = json_decode($x);
 
 			$o = fopen($nama_file, 'a');
-			fwrite($o, $email."|".$z->data."\n");
+			fwrite($o, "\n".$email."|".$z->data."\n");
 			fclose($o);
 
 			$res = array('data' => $z->data, 'type' => $z->type, 'hash' => $hash);
@@ -47,7 +47,7 @@ function hashit($hash, $email, $type, $nama_file)
 		$z = json_decode($x);
 
 		$o = fopen($nama_file, 'a');
-		fwrite($o, $email."|".$z->data."\n");
+		fwrite($o, "\n".$email."|".$z->data."\n");
 		fclose($o);
 
 		$res = array('data' => $z->data, 'type' => $z->type, 'hash' => $hash);

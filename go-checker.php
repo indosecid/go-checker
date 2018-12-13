@@ -8,7 +8,7 @@
 		Jangan Di Utak Atik kalo gk mau error gan :)
 	*/
 
-	$version = '1.1.1';
+	$version = '1.1.2';
 
 	// error_reporting(0);
 	if (!file_exists('token.php')) {
