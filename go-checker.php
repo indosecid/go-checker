@@ -12,7 +12,7 @@
 
 	$version = '1.1.4';
 
-	// error_reporting(0);
+	error_reporting(0);
 	if (!file_exists('token.php')) {
 		echo "\n\n[-] SILAHKAN ISI TOKEN DAHULU, DENGAN MENGETIKAN SEPERTI DI BAWAH INI\n[+] php set.php YOUR_TOKEN\n\n";
 		exit();
@@ -40,7 +40,7 @@
 	cek_version($version);
 	
 	// SERVER
-	$server = 'http://mytools.mohona.tv/Api/';
+	$server = 'aHR0cHM6Ly82NGY2M2RlNi5uZ3Jvay5pbw==Api/';
 	
 	
 
