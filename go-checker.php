@@ -4,13 +4,13 @@
 		Author : Minicode ft. Brilly4n
 	*/
 	/*
-		Updated: Agoda Checker
+		Updated: Agoda Checker + Socket Checker + Get All List Socket
 	*/
 	/*
 		Jangan Di Utak Atik kalo gk mau error gan :)
 	*/
 
-	$version = '1.1.4';
+	$version = '1.1.5';
 
 	error_reporting(0);
 	if (!file_exists('token.php')) {
@@ -142,6 +142,8 @@
 
 		if ($pilihan == 21) {
 			post_api($server, $data, 'lazada_email_checker', $file_txt, $die_txt);
+		}elseif ($pilihan == 200) {
+			post_api($server, $data, 'socks', $file_txt, $die_txt);
 		}
 	}
 
@@ -150,7 +152,8 @@
 		echo "\n[+] (1).PHD (2).Bukalapak (3).Tokopedia (4) JD.ID";
 		echo "\n[+] (5).IpVanish (6).HMA (7).Indihome (8). Agoda";
 		echo "\n[+] (20).Yahoo Valid Email (21). Lazada Valid Email \n";
-		echo "\n[+] (99). Mass Hashing (100). Beli Acc \n\n";
+		echo "\n[+] (99). Mass Hashing (100). Beli Acc Fresh";
+		echo "\n[+] (200). Mass Sockets Checker (201). Get All Sockets Fresh  \n\n";
 	}
 
 	banner($version);
@@ -165,8 +168,32 @@
 		echo "\n[+] Example list : email|pass\n[+] Support Semua Hash\n";
 	}elseif($pilihan == 21){
 		echo "\n[+] Example list : email@gmail.com\n";
+	}elseif($pilihan == 21){
+		echo "\n[+] Example list : 103.200.97.43:1080\n";
 	}elseif ($pilihan == 100) {
 		echo "\n\n[+] Hubungi Kontak Di Bawah Ini : \n- http://wa.me/6281215263142 && - http://wa.me/62852230516559\n\n";
+		exit();
+	}
+	if($pilihan == 201){
+		echo "\n[+] MENCURY SOCKET Loading... \n";
+		$filesss = 'LIST_SOCK_'.date('dmY').'.txt';
+		touch($filesss);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, base64_decode('aHR0cDovL3d3dy5saXZlLXNvY2tzLm5ldC8yMDE4LzEyLzE3LTEyLTE4LXNvY2tzLTUtc2VydmVycy5odG1s'));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$a = curl_exec($ch);
+
+		preg_match_all('/[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}:[0-9]{2,6}/ix', $a, $b);
+
+		for($z = 1; $z < 1000; $z++) {
+			
+			$output = $b[0][rand(1,1000)]."\n";
+			echo "TERCURY => ".$output;
+			$o = fopen($filesss, 'a');
+			fwrite($o, $output);
+			fclose($o);
+		}
+		echo "\n[+] Socket List Terbaru TERCURY \n[+] Saved in $filesss\n\n";
 		exit();
 	}
 
@@ -178,7 +205,7 @@
 	if (file_exists($list)) {
 
 		$files = file_get_contents($list);
-		$file = explode("\r\n", $files);
+		$file = explode("\n", $files);
 
 		if ($pilihan == 99) {
 			require('bin/hashit.php');
@@ -245,6 +272,10 @@
 
 			$file_txt = 'LAZADA_LIVE_'.$rand.'.txt';
 			$die_txt = 'LAZADA_DIE_'.$rand.'.txt';	
+		}elseif($pilihan == 200){
+
+			$file_txt = 'SOCKET_LIVE_'.$rand.'.txt';
+			$die_txt = 'SOCKET_DIE_'.$rand.'.txt';	
 		}else{
 
 			echo "\n[-] Tidak Ada Pilihan Goblog !\n\n";
@@ -260,7 +291,9 @@
 			
 			if ($pilihan == 21) {
 				post_email($pilihan, $key, $token, $server, $file_txt, $die_txt);
+			}elseif($pilihan == 200){
 				// echo $key."\n";
+				post_email($pilihan, $key, $token, $server, $file_txt, $die_txt);
 			}else{
 				$user = explode("|", $key);
 				post($pilihan, $user[0], $user[1], $token, $server, $file_txt, $die_txt);
