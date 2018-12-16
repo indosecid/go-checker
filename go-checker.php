@@ -3,12 +3,14 @@
 		GO-Checker Tools
 		Author : Minicode ft. Brilly4n
 	*/
-
+	/*
+		Updated: Agoda Checker
+	*/
 	/*
 		Jangan Di Utak Atik kalo gk mau error gan :)
 	*/
 
-	$version = '1.1.3';
+	$version = '1.1.4';
 
 	// error_reporting(0);
 	if (!file_exists('token.php')) {
@@ -40,8 +42,9 @@
 	// SERVER
 	$server = 'http://mytools.mohona.tv/Api/';
 	
+	
 
-	function banner()
+	function banner($version)
 	{
 		echo "
  _____             _____      _             
@@ -49,7 +52,7 @@
 | |  \/ ___ ______| /  \/ ___| | _____ _ __ 
 | | __ / _ \______| |    / _ \ |/ / _ \ '__|
 | |_\ \ (_) |     | \__/\  __/   <  __/ |   
- \____/\___/       \____/\___|_|\_\___|_|  v.1.1
+ \____/\___/       \____/\___|_|\_\___|_|  v.$version
 
  > Minicode ft. Brilly4n
 ";
@@ -104,6 +107,9 @@
 		}elseif($pilihan == 7){
 			sleep(1);
 			post_api($server, $data, 'indihome', $file_txt, $die_txt);
+		}elseif($pilihan == 8){
+			sleep(1);
+			post_api($server, $data, 'agoda', $file_txt, $die_txt);
 		}elseif($pilihan == 20){
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $server.'yahoo');
@@ -142,12 +148,12 @@
 	function pilihan()
 	{
 		echo "\n[+] (1).PHD (2).Bukalapak (3).Tokopedia (4) JD.ID";
-		echo "\n[+] (5).IpVanish (6).HMA (7).Indihome";
+		echo "\n[+] (5).IpVanish (6).HMA (7).Indihome (8). Agoda";
 		echo "\n[+] (20).Yahoo Valid Email (21). Lazada Valid Email \n";
 		echo "\n[+] (99). Mass Hashing (100). Beli Acc \n\n";
 	}
 
-	banner();
+	banner($version);
 	pilihan();
 
 	echo " > Masukan Pilihan Checker : ";
@@ -227,6 +233,10 @@
 
 			$file_txt = 'INDIHOME_LIVE_'.$rand.'.txt';
 			$die_txt = 'INDIHOME_DIE_'.$rand.'.txt';	
+		}elseif($pilihan == 8){
+
+			$file_txt = 'AGODA_LIVE_'.$rand.'.txt';
+			$die_txt = 'AGODA_DIE_'.$rand.'.txt';	
 		}elseif($pilihan == 20){
 
 			$file_txt = 'YAHOO_LIVE_'.$rand.'.txt';
