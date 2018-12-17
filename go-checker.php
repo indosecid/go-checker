@@ -40,7 +40,7 @@
 	cek_version($version);
 	
 	// SERVER
-	$server = base64_decode('aHR0cHM6Ly8yZjJmZGVlYi5uZ3Jvay5pbw==').'/Api/';
+	$server = base64_decode('aHR0cHM6Ly80MTNjY2Q3MS5uZ3Jvay5pbw==').'/Api/';
 	
 	
 
