@@ -4,13 +4,13 @@
 		Author : Minicode ft. Brilly4n
 	*/
 	/*
-		Updated: Agoda Checker + Socket Checker + Get All List Socket
+		Updated: Agoda Checker + Socket Checker + Get All List Socket + penambahan server
 	*/
 	/*
 		Jangan Di Utak Atik kalo gk mau error gan :)
 	*/
 
-	$version = '1.1.6';
+	$version = '1.1.7';
 
 	error_reporting(0);
 	if (!file_exists('token.php')) {
