@@ -6,5 +6,5 @@ $ php go-checker.php
 Untuk Menggunakan Tools Go-Checker, kalian harus Mempunyai Token.
 Token Bisa Kalian Beli ke Admin, atau kalian Bisa Hubungi WA di bawah ini :
 
-- Minicode : 085865054323
+- Minicode : 081218168276
 - Brilly4n : 085230516559
