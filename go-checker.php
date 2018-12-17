@@ -10,7 +10,7 @@
 		Jangan Di Utak Atik kalo gk mau error gan :)
 	*/
 
-	$version = '1.1.5';
+	$version = '1.1.6';
 
 	error_reporting(0);
 	if (!file_exists('token.php')) {
