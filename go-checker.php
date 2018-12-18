@@ -10,7 +10,7 @@
 		Jangan Di Utak Atik kalo gk mau error gan :)
 	*/
 
-	$version = '1.1.8';
+	$version = '1.1.9';
 
 	error_reporting(0);
 	if (!file_exists('token.php')) {
@@ -40,7 +40,8 @@
 	cek_version($version);
 	
 	// SERVER
-	$server = base64_decode('aHR0cHM6Ly81NjMxNDEzMy5uZ3Jvay5pbw==').'/Api/';
+	$server = "http://mytools.mohona.tv/api/";
+	// $server = base64_decode('aHR0cHM6Ly81NjMxNDEzMy5uZ3Jvay5pbw==').'/Api/';
 	
 	
 
