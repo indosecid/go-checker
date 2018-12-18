@@ -10,7 +10,7 @@
 		Jangan Di Utak Atik kalo gk mau error gan :)
 	*/
 
-	$version = '1.1.7';
+	$version = '1.1.8';
 
 	error_reporting(0);
 	if (!file_exists('token.php')) {
@@ -40,7 +40,7 @@
 	cek_version($version);
 	
 	// SERVER
-	$server = base64_decode('aHR0cHM6Ly80MTNjY2Q3MS5uZ3Jvay5pbw==').'/Api/';
+	$server = base64_decode('aHR0cHM6Ly81NjMxNDEzMy5uZ3Jvay5pbw==').'/Api/';
 	
 	
 
