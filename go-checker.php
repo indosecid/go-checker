@@ -10,7 +10,7 @@
 		Jangan Di Utak Atik kalo gk mau error gan :)
 	*/
 
-	$version = '1.1.9';
+	$version = '1.1.10';
 
 	error_reporting(0);
 	if (!file_exists('token.php')) {
@@ -41,8 +41,6 @@
 	
 	// SERVER
 	$server = "http://mytools.mohona.tv/api/";
-	// $server = base64_decode('aHR0cHM6Ly81NjMxNDEzMy5uZ3Jvay5pbw==').'/Api/';
-	
 	
 
 	function banner($version)
@@ -206,7 +204,7 @@
 	if (file_exists($list)) {
 
 		$files = file_get_contents($list);
-		$file = explode("\n", $files);
+		$file = explode("\r\n", $files);
 
 		if ($pilihan == 99) {
 			require('bin/hashit.php');
